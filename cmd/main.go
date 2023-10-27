@@ -15,7 +15,7 @@ import (
 func main() {
 	logrus.SetFormatter(new(logrus.JSONFormatter))
 	if err := initConfig(); err != nil {
-		logrus.Fatalf("error initializing congigs: %s", err.Error())
+		logrus.Fatalf("error initializing configs: %s", err.Error())
 	}
 
 	if err := godotenv.Load(); err != nil {
@@ -23,7 +23,7 @@ func main() {
 	}
 
 	db, err := repository.NewPostgreDB(repository.Config{
-		Host:     viper.GetString("db.host"),
+		Host:     viper.GetString("db.host"), //todo закинуть в env
 		Port:     viper.GetString("db.port"),
 		Username: viper.GetString("db.username"),
 		DBName:   viper.GetString("db.dbname"),
